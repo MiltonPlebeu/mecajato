@@ -1,12 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Cliente, Carro
 import re
 
 
 def clientes(request):
     if request.method == "GET":
-        return render(request, 'clientes.html')
+        cliente_list = Cliente.objects.all() #lista todos os clientes cadastradod no banco
+        return render(request, 'clientes.html', {'clientes': cliente_list}) #envia lista de clientes para clientes.html
     elif request.method == "POST":
         nome = request.POST.get('nome')
         sobrenome = request.POST.get('sobrenome')
@@ -37,7 +38,11 @@ def clientes(request):
             car.save()
 
         return HttpResponse('teste')
-
+    
+    
+def atualiza_cliente (request):
+        print('Testando....')
+        return JsonResponse({"teste":1})
 
         
 
