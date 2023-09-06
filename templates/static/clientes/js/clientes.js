@@ -40,6 +40,19 @@ function dados_cliente(){
         return result.json()
     }).then(function(data){
 
-        console.log(data)
+        document.getElementById('form-atualizar-cliente').style.display = 'block'
+
+        nome = document.getElementById('nome')
+        nome.value = data['nome']
+
+        sobrenome = document.getElementById('sobrenome')
+        sobrenome.value = data['sobrenome']
+
+        cpf = document.getElementById('cpf')
+        cpf.value = data['cpf']
+
+        email = document.getElementById('email')
+        email.value = data['email']
+
     })
 }
